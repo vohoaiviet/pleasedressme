@@ -46,7 +46,7 @@
 require_once 'Services/PleaseDressMe/Common.php';
 
 /**
- * Shirts API Group
+ * Tags group API driver 
  *
  * @category  Services
  * @package   Services_PleaseDressMe
@@ -57,32 +57,19 @@ require_once 'Services/PleaseDressMe/Common.php';
  * @link      http://code.google.com/p/pleasedressme
  * @link      http://pleasedress.me
  */
-class Services_PleaseDressMe_Shirts extends Services_PleaseDressMe_Common
+class Services_PleaseDressMe_Tags extends Services_PleaseDressMe_Common
 {
     /**
-     * Search shirts by keyword
+     * Get tags by letter
      *
-     * @param string $query The query string to search for
-     *
-     * @return object Instance of SimpleXMLElement with API response
-     * @throws {@link Services_PleaseDressMe_Exception} on API error
+     * @param string $letter The letter to fetch tags for (e.g. a-z)
+     * 
+     * @throw {Services_PleaseDressMe_Exception} on error
+     * @return object Instance of SimpleXMLElement with response
      */
-    public function search($query)
+    public function letter($letter)
     {
-        return $this->sendRequest('/shirts/search', array('q' =>$query));
-    }
-
-    /**
-     * Get shirts by tag
-     *
-     * @param string $tag The tag to fetch shirts for (e.g. 'beer')
-     *
-     * @return object Instance of SimpleXMLElement with API response
-     * @throws {@link Services_PleaseDressMe_Exception} on API error
-     */
-    public function tag($tag)
-    {
-        return $this->sendRequest('/shirts/tag', array('tag' =>$query));
+        return $this->sendRequest('/tags/' . $letter);
     }
 }
 
